@@ -29,7 +29,7 @@ MatrixXd proj_matrix(3, 4);
 bool multi_color_dlo;
 double visibility_threshold;
 int dlo_pixel_width;
-double beta;
+double beta_var;
 double beta_pre_proc;
 double lambda;
 double lambda_pre_proc;
@@ -128,7 +128,7 @@ sensor_msgs::ImagePtr Callback(const sensor_msgs::ImageConstPtr& image_msg, cons
     
     if (!initialized) {
         if (received_init_nodes && received_proj_matrix) {
-            tracker = trackdlo(init_nodes.rows(), visibility_threshold, beta, lambda, alpha, k_vis, mu, max_iter, tol, beta_pre_proc, lambda_pre_proc, lle_weight);
+            tracker = trackdlo(init_nodes.rows(), visibility_threshold, beta_var, lambda, alpha, k_vis, mu, max_iter, tol, beta_pre_proc, lambda_pre_proc, lle_weight);
 
             sigma2 = 0.001;
 
@@ -536,7 +536,7 @@ int main(int argc, char **argv) {
     ros::NodeHandle nh;
 
     // load parameters
-    nh.getParam("/trackdlo/beta", beta); 
+    nh.getParam("/trackdlo/beta", beta_var); 
     nh.getParam("/trackdlo/lambda", lambda); 
     nh.getParam("/trackdlo/alpha", alpha); 
     nh.getParam("/trackdlo/mu", mu); 
