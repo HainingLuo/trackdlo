@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import rospy
+import numpy as np
+np.float = np.float64
 import ros_numpy
 from sensor_msgs.msg import PointCloud2, PointField, Image, CameraInfo
 import sensor_msgs.point_cloud2 as pcl2
@@ -10,7 +12,6 @@ import message_filters
 import struct
 import time
 import cv2
-import numpy as np
 import time
 
 from visualization_msgs.msg import MarkerArray
