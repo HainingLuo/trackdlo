@@ -589,7 +589,7 @@ int main(int argc, char **argv) {
         }
         
         if (i == hsv_threshold_lower_limit.length()-1) {
-            upper.push_back(std::stoi(rgb_val));
+            lower.push_back(std::stoi(rgb_val));
         }
     }
 
