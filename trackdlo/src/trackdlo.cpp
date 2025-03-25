@@ -229,7 +229,7 @@ bool trackdlo::cpd_lle (MatrixXd X_orig,
         }
     }
 
-    // kernel matrix
+    // kernel matrix (Eq. 11)
     G = 1/(2*beta * 2*beta) * (-sqrt(2)*converted_node_dis/beta).array().exp() * (2*converted_node_dis.array() + sqrt(2)*beta);
 
     // get the LLE matrix
@@ -919,6 +919,10 @@ void trackdlo::tracking_step (MatrixXd X_orig,
     else {
         guide_nodes_ = Y_.replicate(1, 1);
     }
+
+    std::cout << "visible nodes extended: " << visible_nodes_extended.size() << std::endl;
+    std::cout << "guide nodes: " << guide_nodes_.rows() << std::endl;
+    std::cout << "Y: " << Y_.rows() << std::endl;
 
     // determine DLO state: heading visible, tail visible, both visible, or both occluded
     // priors_vec should be the final output; priors_vec[i] = {index, x, y, z}
